@@ -1,0 +1,5 @@
+"The theoretical relationship between RSSI and distance is something like this:
+RSSI[dbm] = −(10n log10(d) − A)
+where d is the distance and A is the offset which is the measured RSSI 1 meter point away from the BLE device.
+Simply google for RSSI[dbm] = −(10n log10(d) − A) and you will find some sources about it."
+
