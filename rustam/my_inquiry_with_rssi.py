@@ -4,6 +4,7 @@
 import os
 import sys
 import struct
+import time
 import bluetooth._bluetooth as bluez
 import bluetooth
 
@@ -104,7 +105,13 @@ def device_inquiry_with_with_rssi(sock):
                         bluetooth.get_byte(pkt[1+13*nrsp+i]))
                 if addr == DEVICE:
                     print('[+] DEVICE:{}, MAC:{}, RSSI = {}'.format('saomi', addr, rssi))
-                results.append( ( addr, rssi ) )               
+                    done = True
+                    time.sleep(0.3)
+                    sock.setsockopt( bluez.SOL_HCI, bluez.HCI_FILTER, old_filter )
+                    time.sleep(0.3)
+                    return results
+                    
+                # results.append( ( addr, rssi ) )               
                 
                 # print("[%s] RSSI: [%d]" % (addr, rssi))
                 
@@ -132,7 +139,7 @@ def device_inquiry_with_with_rssi(sock):
     sock.setsockopt( bluez.SOL_HCI, bluez.HCI_FILTER, old_filter )
 
     return results
-
+'''
 dev_id = 0
 try:
     sock = bluez.hci_open_dev(dev_id)
@@ -162,3 +169,5 @@ if mode != 1:
     print("result: %d" % result)
 
 device_inquiry_with_with_rssi(sock)
+'''
+
