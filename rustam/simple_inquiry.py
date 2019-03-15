@@ -1,4 +1,5 @@
 # simple inquiry example
+# seeing my devs, without rssi
 import bluetooth
 
 nearby_devices = bluetooth.discover_devices(lookup_names=True)
